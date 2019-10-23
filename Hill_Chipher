@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+#To feedback please contact me
 
 import numpy as np
 import string
@@ -38,17 +39,28 @@ def check_usuable_matrix(key):
             for i in alpha:
                 if n==i:
                     x.append(int(string.ascii_lowercase.index(n)))
-
+       
     
 
             
-    return msg,key
+    return msg,key,x
 
 def intrp_program(x):
     print(x)
     sys.exit(0)
+
+def resultMod(get_crypt):
+    #print(get_crypt) #metin şifrelenmiş hali
+    #mod26 almak
+    #result=get_crypt 
+    resultMod=np.mod(get_crypt,26)
+    #print(get_crypt)
+    #mod alınmış hali
     
-def convert2msg(msg,key): 
+    return resultMod
+
+    
+def convert2msg(msg,key,x): 
 
     row = 2
     col = int(len(msg)/2) #3 integer
@@ -64,11 +76,18 @@ def convert2msg(msg,key):
     for i in range(len(msg)): # 6 integer
         if i % 2 == 0:
             msgToMatrix[0][iteration1]=int(ord(msg[i])-97)
+            if msgToMatrix[0][iteration1]>26 or msgToMatrix[0][iteration1]<0:
+                print("\nYour input cannot use for encryption key")
+                sys.exit(0)
             iteration1 +=1
-           
+            
         else:
             msgToMatrix[1][iteration2] = int(ord(msg[i])-97)
+            if msgToMatrix[1][iteration2]>26 or msgToMatrix[1][iteration2]<0:
+                print("\nYour input cannot use for encryption key")
+                sys.exit(0)
             iteration2 +=1
+            
     msgToMatrix =np.matrix(msgToMatrix)
     print("\nMessage on matrix base : \n{}\n".format(msgToMatrix))
     #print(type(msgToMatrix))
@@ -81,6 +100,9 @@ def convert2msg(msg,key):
     print("Random key is: \n{}\n".format(key))
     
     print("\nEncryption Text:\n {} \n ".format(get_crypt))  #şifrelenmiş mesaj
+    
+    resultModx=resultMod(get_crypt)
+    print("\nMod26 for encryption text:\n {} \n ".format(resultModx))  
     
     return get_crypt
         
@@ -101,24 +123,20 @@ def key_generator():
     key_generator=np.random.randint(26,size=(2, 2)) #english alphabet.
     return key_generator
 
-#def resultMod(get_crypt):
-    #print(get_crypt) #metin şifrelenmiş hali
-    #mod26 almak
-    #result=get_crypt #np.mod(get_crypt,26)
-    #print(get_crypt)
-    #mod alınmış hali
-    
-    #return result
+
         
 if __name__=="__main__":
     #print("Check key that usuable for Hill \n")
     #limit=random_limit_generator()
     keyx=key_generator()
-    msg,key=check_usuable_matrix(keyx)#
-    get_crypt=convert2msg(msg,key)
-    #result = resultMod(get_crypt)
+    msg,key,x=check_usuable_matrix(keyx)#
+    get_crypt=convert2msg(msg,key,x)
+    resultMod(get_crypt)
     invMatris=inverseMatris(keyx)
     result=invMatris*get_crypt
+    
   
     print("\nDecryption key(inverse_matrix): \n {} \n".format(invMatris))
     print("\nVerification for first orginal text on matrix base:\n {} \n".format(result))
+    
+    
