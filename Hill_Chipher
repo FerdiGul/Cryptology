@@ -14,6 +14,7 @@ def check_usuable_matrix(key):
     msg= input("Enter the message [you can use also [space(\" \")||comma(\",\") ]: ").lower()
     msg=msg.replace(" ","")
     msg=msg.replace(",","")
+    msg=msg.replace("'","")
     
     len_chk = 0
         
