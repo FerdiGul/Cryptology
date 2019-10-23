@@ -1,15 +1,12 @@
-
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-
-#To feedback please contact me
-#Hill Chipher Check Tool for english alphabet 
 
 import numpy as np
 import string
 from scipy import linalg
 from random import randint
 import sys
+
 
 def check_usuable_matrix(key):
     #key =np.matrix(key)
@@ -53,8 +50,12 @@ def intrp_program(x):
 
 def resultMod(get_crypt):
     #print(get_crypt) #metin şifrelenmiş hali
+    #mod26 almak
+    #result=get_crypt 
     resultMod=np.mod(get_crypt,26)
-  
+    #print(get_crypt)
+    #mod alınmış hali
+    
     return resultMod
 
     
@@ -65,8 +66,12 @@ def convert2msg(msg,key,x):
     msgToMatrix = np.zeros((row, col), dtype=int)
         
     iteration1 = 0
-    iteration2 = 0 
-   
+    iteration2 = 0
+    
+    
+         # te st A0
+    #print(np.matrix(x))
+    #print(msg)
     for i in range(len(msg)): # 6 integer
         if i % 2 == 0:
             msgToMatrix[0][iteration1]=int(ord(msg[i])-97)
@@ -117,6 +122,7 @@ def key_generator():
     key_generator=np.random.randint(26,size=(2, 2)) #english alphabet.
     return key_generator
 
+
         
 if __name__=="__main__":
     #print("Check key that usuable for Hill \n")
@@ -131,5 +137,3 @@ if __name__=="__main__":
   
     print("\nDecryption key(inverse_matrix): \n {} \n".format(invMatris))
     print("\nVerification for first orginal text on matrix base:\n {} \n".format(result))
-    
-    
