@@ -1,10 +1,9 @@
-#To feedback please contact me
-
-#Hill Chipher Check Tool for english alphabet 
 
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+#To feedback please contact me
+#Hill Chipher Check Tool for english alphabet 
 
 import numpy as np
 import string
