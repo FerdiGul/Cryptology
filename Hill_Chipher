@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 #To feedback please contact me!
-
+#Hill Cipher Check usable and encryption,decryption
 
 import numpy as np
 import string
