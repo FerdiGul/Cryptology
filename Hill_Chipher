@@ -7,12 +7,11 @@ from scipy import linalg
 from random import randint
 import sys
 
-#row=int(input("Enter the row number: "))
-#column=int(input("Enter the column number: "))
+
 def check_usuable_matrix(key):
-    key =np.matrix(key)
-    print(key)
-    msg= input("Enter the keys separetly within comma for 2x2 marix[0-26]: ").lower()
+    #key =np.matrix(key)
+    #print("Random key is: \n{}\n".format(key))
+    msg= input("Enter the message [you can use also [space(\" \")||comma(\",\") ]: ").lower()
     msg=msg.replace(" ","")
     msg=msg.replace(",","")
     
@@ -21,23 +20,16 @@ def check_usuable_matrix(key):
     if len(msg)%2 !=0:
         msg +="a"
         len_chk=1
-            
-    #msg to matrices
-    
-      
-      
-         
-    
+
     alpha = ['a','b','c','d','e','f','g','h','i','j','k','l',
             'm','n','o','p','q','r','s','t','u','v','w','x','y','z']
     matrix_key_array = list()
 
     x= list()
     
-    
     for n in msg:
         if (n.isalpha())==False:
-            print("Girdiniz şifreleme anahtarı olarak kullanılamaz[x ile gösterildi]")
+            print("\nYour input cannot use for encryption key[cause was showed with X]")
             x.append("X")
             intrp_program(x)
             
@@ -59,32 +51,35 @@ def convert2msg(msg,key):
 
     row = 2
     col = int(len(msg)/2) #3 integer
-    msg2d = np.zeros((row, col), dtype=int)
+    msgToMatrix = np.zeros((row, col), dtype=int)
         
-    itr1 = 0
-    itr2 = 0
+    iteration1 = 0
+    iteration2 = 0
     
     
          # te st A0
     #print(np.matrix(x))
-    print(msg)
+    #print(msg)
     for i in range(len(msg)): # 6 integer
         if i % 2 == 0:
-            msg2d[0][itr1]=int(ord(msg[i])-97)
-            itr1 +=1
+            msgToMatrix[0][iteration1]=int(ord(msg[i])-97)
+            iteration1 +=1
            
         else:
-            msg2d[1][itr2] = int(ord(msg[i])-97)
-            itr2 +=1
-    msg2d =np.matrix(msg2d)
-    print(msg2d)
-    print(type(msg2d))
-    get_crypt=key*msg2d; #ŞİFRELENMİŞ METİN
+            msgToMatrix[1][iteration2] = int(ord(msg[i])-97)
+            iteration2 +=1
+    msgToMatrix =np.matrix(msgToMatrix)
+    print("\nMessage on matrix base : \n{}\n".format(msgToMatrix))
+    #print(type(msgToMatrix))
+    get_crypt=key*msgToMatrix; #ŞİFRELENMİŞ METİN
         #x=int(get_multi[0])
         #y=int(get_multi[1])
-    print(key)
-        
-    print("\nŞifrelenmiş metin:\n {} \n ".format(get_crypt))  #şifrelenmiş mesaj
+    #print(key)
+    
+    key =np.matrix(key)
+    print("Random key is: \n{}\n".format(key))
+    
+    print("\nEncryption Text:\n {} \n ".format(get_crypt))  #şifrelenmiş mesaj
     
     return get_crypt
         
@@ -94,7 +89,7 @@ print("\n")
 #    return limit
 
 def inverseMatris(keyx):
-    print("keyx {}".format(keyx))
+    #print("Key is: \n{}\n".format(keyx))
     np.set_printoptions(suppress=True)
     invMatris=np.linalg.inv(keyx)
    
@@ -105,14 +100,14 @@ def key_generator():
     key_generator=np.random.randint(26,size=(2, 2)) #english alphabet.
     return key_generator
 
-def resultMod(get_crypt):
+#def resultMod(get_crypt):
     #print(get_crypt) #metin şifrelenmiş hali
     #mod26 almak
-    result=get_crypt #np.mod(get_crypt,26)
-    print(get_crypt)
-     #mod alınmış hali
+    #result=get_crypt #np.mod(get_crypt,26)
+    #print(get_crypt)
+    #mod alınmış hali
     
-    return result
+    #return result
         
 if __name__=="__main__":
     #print("Check key that usuable for Hill \n")
@@ -120,9 +115,9 @@ if __name__=="__main__":
     keyx=key_generator()
     msg,key=check_usuable_matrix(keyx)#
     get_crypt=convert2msg(msg,key)
-    result = resultMod(get_crypt)
+    #result = resultMod(get_crypt)
     invMatris=inverseMatris(keyx)
-    result=invMatris*result
+    result=invMatris*get_crypt
   
-    print("\nDeşifreleme anahtarı(ters matrix): \n {} \n".format(invMatris))
-    print("\nSAĞLama result test ilk orjinal metin:\n {} \n".format(result))
+    print("\nDecryption key(inverse_matrix): \n {} \n".format(invMatris))
+    print("\nVerification for first orginal text on matrix base:\n {} \n".format(result))
