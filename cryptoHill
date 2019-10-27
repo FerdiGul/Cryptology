@@ -30,7 +30,7 @@ def check_usuable_matrix(key):
     matrix_key_array = list()
 
     x= list()
-    
+    y= list()
     for n in msg:
         if (n.isalpha())==False:
             print("\nYour input cannot use for encryption key[cause was showed with X]")
@@ -126,7 +126,23 @@ def key_generator():
     return key_generator
 
 
+def decryptionMessage(decryption,x):
+    #print("HEYYYYYY \n\n{} \n {}".format(type(decryption),decryption)) #matrix
+    alpha = ['a','b','c','d','e','f','g','h','i','j','k','l',
+            'm','n','o','p','q','r','s','t','u','v','w','x','y','z']
+    
+    decMessage=""
+    for i in x:
+        for a in alpha:
+            if i==alpha.index(a):
+                #print(type(i)) #int
+                decMessage +=a[0]
+  
+    
+    return decMessage
         
+    
+
 if __name__=="__main__":
     #print("Check key that usuable for Hill \n")
     #limit=random_limit_generator()
@@ -136,7 +152,10 @@ if __name__=="__main__":
     resultMod(get_crypt)
     invMatris=inverseMatris(keyx)
     result=invMatris*get_crypt
+    decMsg=decryptionMessage(result,x)
     
   
     print("\nDecryption key(inverse_matrix): \n {} \n".format(invMatris))
     print("\nVerification for first orginal text on matrix base:\n {} \n".format(result))
+    print("\nGet Orginal Message text:\n {} \n".format(decMsg))
+    
