@@ -5,7 +5,7 @@ from math import *
 
 def euclidian_algorithm(x,y,verbose=True):
   n=0
-  if x<y:
+  if x<y: # 1.sayının ikinciden hep büyük olmasını kontrol ediyor eğer küçükse y(ikinci sayı)'yı birinci sayı yapıyor.
     return euclid_algo(y,x,verbose)
   print()
   while y!=0:
