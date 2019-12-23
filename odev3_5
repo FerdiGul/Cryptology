@@ -1,0 +1,25 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+from math import *
+
+def euclidian_algorithm(x,y,verbose=True):
+  n=0
+  if x<y:
+    return euclid_algo(y,x,verbose)
+  print()
+  while y!=0:
+    if verbose:
+      print('%s = %s*%s + %s' % (x, floor(x/y),y,x%y))
+      (x,y) = (y,x%y)
+      n=n+1
+  if verbose:
+    print('\ngcd is %s' % x)
+    print('\n(N)iterations number is: {}'.format(n))
+
+  return x
+
+if __name__=="__main__":
+  x=int(input("1.sayiyi giriniz: "))
+  y=int(input("2.sayıyı giriniz: "))
+  euclidian_algorithm(x,y)
