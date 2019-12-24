@@ -21,18 +21,6 @@ def euc_algo(x,y,verbose=True):
 
   return x
 
-if __name__=="__main__":
-  x=int(input("1.sayiyi giriniz: "))
-  y=int(input("2.sayıyı giriniz: "))
-  euc_algo(x,y)
-  #x=23
-  #y=45
-  ebob=gcd(x,y)
-  #print("gcd [d]: {} ".format(ebob))
-  print("\nax + by = gcd(x, y)\n")
-  print("x" + "\t" + "y" + "\t" + "g" +"\t" + "a" + "\t" + "b")
-  print("-"*35)
-  extended_gcd(x,y)
 
 
 
@@ -51,3 +39,16 @@ def extended_gcd(x,y):
     (g,a,b) = extended_gcd(y,x%y)
     print(x,"\t",y,"\t",g,"\t",b,"\t",a-(x//y)*b)
     return(g,b,a-(x//y)*b)
+
+if __name__=="__main__":
+  x=int(input("1.sayiyi giriniz: "))
+  y=int(input("2.sayıyı giriniz: "))
+  euc_algo(x,y)
+  #x=23
+  #y=45
+  ebob=gcd(x,y)
+  #print("gcd [d]: {} ".format(ebob))
+  print("\nax + by = gcd(x, y)\n")
+  print("x" + "\t" + "y" + "\t" + "g" +"\t" + "a" + "\t" + "b")
+  print("-"*35)
+  extended_gcd(x,y)
