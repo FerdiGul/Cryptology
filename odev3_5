@@ -51,5 +51,3 @@ def extended_gcd(x,y):
     (g,a,b) = extended_gcd(y,x%y)
     print(x,"\t",y,"\t",g,"\t",b,"\t",a-(x//y)*b)
     return(g,b,a-(x//y)*b)
-
-
