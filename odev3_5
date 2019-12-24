@@ -9,19 +9,19 @@ def gcd(x,y):
 
 def extended_gcd(x,y):
   if (y == 0):
-    print x,"\t",y,"\t",x,"\t",1,"\t",0
+    print(x,"\t",y,"\t",x,"\t",1,"\t",0)
     return (x,1,0)  
   else:
-
     (g,a,b) = extended_gcd(y,x%y)
-    print x,"\t",y,"\t",g,"\t",b,"\t",a-(x//y)*b
+    print(x,"\t",y,"\t",g,"\t",b,"\t",a-(x//y)*b)
     return(g,b,a-(x//y)*b)
-  
+
 x=192
 y=178
 ebob=gcd(x,y)
-print "gcd [d]: ", ebob
-print "x" + "\t" + "y" + "\t" + "g" +"\t" + "a" + "\t" + "b"
-print "-"*35
-
+print("gcd [d]: {} ".format(ebob))
+print("x" + "\t" + "y" + "\t" + "g" +"\t" + "a" + "\t" + "b")
+print("-"*35)
 extended_gcd(x,y)
+#a=Coefficient for bigger integer
+#b=Coefficient for smaller integer
