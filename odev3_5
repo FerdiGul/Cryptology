@@ -1,5 +1,40 @@
 #  ax + by = gcd(x, y)
 
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+from math import *
+
+def euc_algo(x,y,verbose=True):
+  n=0
+  if x<y: 
+    return euc_algo(y,x,verbose)
+  print()
+  while y!=0:
+    if verbose:
+      print('%s = %s*%s + %s' % (x, floor(x/y),y,x%y))
+      (x,y) = (y,x%y)
+      n=n+1
+  if verbose:
+    print('\ngcd is %s' % x)
+    print('\n(N)iterations number is: {}'.format(n))
+
+  return x
+
+if __name__=="__main__":
+  x=int(input("1.sayiyi giriniz: "))
+  y=int(input("2.sayıyı giriniz: "))
+  euc_algo(x,y)
+  #x=23
+  #y=45
+  ebob=gcd(x,y)
+  print("gcd [d]: {} ".format(ebob))
+  print("x" + "\t" + "y" + "\t" + "g" +"\t" + "a" + "\t" + "b")
+  print("-"*35)
+  extended_gcd(x,y)
+
+
+
 def gcd(x,y):
   if (y==0):
     g = x
@@ -16,12 +51,4 @@ def extended_gcd(x,y):
     print(x,"\t",y,"\t",g,"\t",b,"\t",a-(x//y)*b)
     return(g,b,a-(x//y)*b)
 
-x=192
-y=178
-ebob=gcd(x,y)
-print("gcd [d]: {} ".format(ebob))
-print("x" + "\t" + "y" + "\t" + "g" +"\t" + "a" + "\t" + "b")
-print("-"*35)
-extended_gcd(x,y)
-#a=Coefficient for bigger integer
-#b=Coefficient for smaller integer
+
