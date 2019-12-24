@@ -16,7 +16,7 @@ def euc_algo(x,y,verbose=True):
       (x,y) = (y,x%y)
       n=n+1
   if verbose:
-    print('\ngcd is %s' % x)
+    print('\ngcd[ebob] is : %s' % x)
     print('\n(N)iterations number is: {}'.format(n))
 
   return x
@@ -28,7 +28,8 @@ if __name__=="__main__":
   #x=23
   #y=45
   ebob=gcd(x,y)
-  print("gcd [d]: {} ".format(ebob))
+  #print("gcd [d]: {} ".format(ebob))
+  print("\nax + by = gcd(x, y)\n")
   print("x" + "\t" + "y" + "\t" + "g" +"\t" + "a" + "\t" + "b")
   print("-"*35)
   extended_gcd(x,y)
