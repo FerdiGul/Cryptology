@@ -1,25 +1,27 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
+#  ax + by = gcd(x, y)
 
-from math import *
+def gcd(x,y):
+  if (y==0):
+    g = x
+  else:
+    g=gcd(y,x%y)
+  return g
 
-def euclidian_algorithm(x,y,verbose=True):
-  n=0
-  if x<y: # 1.sayının ikinciden hep büyük olmasını kontrol ediyor eğer küçükse y(ikinci sayı)'yı birinci sayı yapıyor.
-    return euclid_algo(y,x,verbose)
-  print()
-  while y!=0:
-    if verbose:
-      print('%s = %s*%s + %s' % (x, floor(x/y),y,x%y))
-      (x,y) = (y,x%y)
-      n=n+1
-  if verbose:
-    print('\ngcd is %s' % x)
-    print('\n(N)iterations number is: {}'.format(n))
+def extended_gcd(x,y):
+  if (y == 0):
+    print x,"\t",y,"\t",x,"\t",1,"\t",0
+    return (x,1,0)  
+  else:
 
-  return x
+    (g,a,b) = extended_gcd(y,x%y)
+    print x,"\t",y,"\t",g,"\t",b,"\t",a-(x//y)*b
+    return(g,b,a-(x//y)*b)
+  
+x=192
+y=178
+ans=gcd(x,y)
+print "gcd [d]: ", ans
+print "x" + "\t" + "y" + "\t" + "g" +"\t" + "a" + "\t" + "b"
+print "-"*35
 
-if __name__=="__main__":
-  x=int(input("1.sayiyi giriniz: "))
-  y=int(input("2.sayıyı giriniz: "))
-  euclidian_algorithm(x,y)
+extended_gcd(x,y)
